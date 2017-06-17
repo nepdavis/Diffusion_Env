@@ -37,6 +37,7 @@ class diffusion:
 
                 print('Error: incorrect file format. Please provide either csv or txt.')
 
+            self.filename = filename
             self.popt = None
             self.pcov = None
             self.y_predicted = None
@@ -151,6 +152,8 @@ class diffusion:
             print('\n{:<24}{:<10.0f}'.format('Df',
                                              len(self.time)-4))
 
+            print('-'*68+'\n')
+
         def results(self):
 
             self.__error__()
@@ -190,7 +193,7 @@ class diffusion:
                                                                            low_est[2],
                                                                            up_est[2]))
 
-            print('-'*68)
+            print('-'*68+'\n')
 
         def download(self, filename='bass_results', filetype='csv', differentiated=False):
 
@@ -250,6 +253,14 @@ class diffusion:
                 p, q, k = self.popt + self.perr
 
                 self.diff_y_pred_upper = (k * p * (p + q) ** 2 * np.exp(t * (p + q))) / ((p * np.exp(t * (p + q)) + q) ** 2)
+
+        #def save_log(self, title = 'bass_log.txt'):
+
+#file = open(title, 'w')
+
+
+
+
 
 
 
