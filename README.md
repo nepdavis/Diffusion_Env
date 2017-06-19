@@ -1,1 +1,1 @@
-This is the test development environmet for diffusion module
+This is the test development environment for diffusion module
