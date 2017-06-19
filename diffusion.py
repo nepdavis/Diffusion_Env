@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import sys
 from scipy.optimize import curve_fit
 from sklearn.metrics import mean_squared_error, r2_score
 
@@ -82,7 +83,7 @@ class diffusion:
 
             self.diff_y_pred = ( k * p * (p + q)**2 * np.exp(t*(p+q))) / ((p*np.exp(t*(p+q))+q)**2)
 
-        def plot_saturation(self, conf_region = True):
+        def plot_saturation(self, conf_region = True, show = True, save = False):
 
             plt.plot(self.time, self.response, 'o', label='data', color = 'black')
             plt.plot(np.linspace(-1, max(self.time), 1000), self.y_pred_plot, label='fit', color = 'black')
@@ -99,7 +100,13 @@ class diffusion:
                 plt.fill_between(np.linspace(-1, max(self.time), 1000), self.y_pred_lower, self.y_pred_upper,
                                  color='gray', alpha=0.6)
 
-            plt.show()
+            if show:
+
+                plt.show()
+
+            if save:
+
+                plt.savefig('bass_pic')
 
         def plot_cdf(self):
 
@@ -254,13 +261,16 @@ class diffusion:
 
                 self.diff_y_pred_upper = (k * p * (p + q) ** 2 * np.exp(t * (p + q))) / ((p * np.exp(t * (p + q)) + q) ** 2)
 
-        #def save_log(self, title = 'bass_log.txt'):
+        def save_log(self, title = 'bass_log.txt'):
 
-#file = open(title, 'w')
+            file = open(title, 'w')
 
+            sys.stdout = file
 
+            self.diagnostics()
+            self.results()
 
-
+            sys.stdout = sys.__stdout__
 
 
 
