@@ -274,13 +274,14 @@ class diffusion:
 
             file.close()
 
+        def model(self):
+
+            self.fit()
+            self.predict()
+            self.save_log()
 
 
 
 
-model = diffusion.Bass(filename = 'Poke.txt')
-model.fit()
-model.predict()
-model.plot_saturation()
-model.diagnostics()
-model.results()
+model = diffusion.Bass(filename = 'Flu.txt')
+model.model()
