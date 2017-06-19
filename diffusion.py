@@ -272,6 +272,8 @@ class diffusion:
 
             sys.stdout = sys.__stdout__
 
+            file.close()
+
 
 
 
