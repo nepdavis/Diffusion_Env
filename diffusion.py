@@ -132,9 +132,12 @@ class diffusion:
 
                 self.__error__(cumu=False)
 
-                plt.fill_between(np.linspace(-1,max(self.time),1000), self.diff_y_pred_lower, self.diff_y_pred_upper, color='gray', alpha=0.6)
-                plt.fill_between(np.linspace(-1, max(self.time), 1000), self.diff_y_pred, self.diff_y_pred_upper,color='gray', alpha=0.6)
-                plt.fill_between(np.linspace(-1, max(self.time), 1000), self.diff_y_pred, self.diff_y_pred_lower,color='gray', alpha=0.6)
+                plt.fill_between(np.linspace(-1,max(self.time),1000), self.diff_y_pred_lower, self.diff_y_pred_upper,
+                                 color='gray', alpha=0.6)
+                plt.fill_between(np.linspace(-1, max(self.time), 1000), self.diff_y_pred, self.diff_y_pred_upper,
+                                 color='gray', alpha=0.6)
+                plt.fill_between(np.linspace(-1, max(self.time), 1000), self.diff_y_pred, self.diff_y_pred_lower,
+                                 color='gray', alpha=0.6)
 
             plt.show()
 
@@ -186,8 +189,8 @@ class diffusion:
                                                                            up_est[1]))
 
             print('\n{:<24}{:<10.2f}{:<10}{:<12.2f}{:<12.2f}'.format('Peak Adoption Time',
-                                                                           (np.log(self.popt[1]) - np.log(self.popt[0])) /
-                                                                               (self.popt[0] + self.popt[1]),
+                                                                           (np.log(self.popt[1]) - np.log(self.popt[0]))
+                                                                           / (self.popt[0] + self.popt[1]),
                                                                            '',
                                                                            (np.log(low_est[1]) - np.log(low_est[0])) /
                                                                                (low_est[0] + low_est[1]),
@@ -255,11 +258,13 @@ class diffusion:
 
                 t = np.linspace(-1, max(self.time), 1000)
 
-                self.diff_y_pred_lower = (k * p * (p + q) ** 2 * np.exp(t * (p + q))) / ((p * np.exp(t * (p + q)) + q) ** 2)
+                self.diff_y_pred_lower = (k * p * (p + q) ** 2 * np.exp(t * (p + q))) / \
+                                         ((p * np.exp(t * (p + q)) + q) ** 2)
 
                 p, q, k = self.popt + self.perr
 
-                self.diff_y_pred_upper = (k * p * (p + q) ** 2 * np.exp(t * (p + q))) / ((p * np.exp(t * (p + q)) + q) ** 2)
+                self.diff_y_pred_upper = (k * p * (p + q) ** 2 * np.exp(t * (p + q))) / \
+                                         ((p * np.exp(t * (p + q)) + q) ** 2)
 
         def save_log(self, title = 'bass_log.txt'):
 
