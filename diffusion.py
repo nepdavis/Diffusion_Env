@@ -288,5 +288,6 @@ class diffusion:
 
 
 
-model = diffusion.Bass(filename = 'Flu.txt')
+model = diffusion.Bass(filename = 'ALS.csv')
 model.model()
+model.plot_saturation()
